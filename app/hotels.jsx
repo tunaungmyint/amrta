@@ -18,12 +18,12 @@ SwiperCore.use([Pagination, Navigation]);
 import { use } from 'react';
 
 async function getPosts() {
-  let places = await fetch('https://amrtago.vercel.app/place/find/Hotel');
-  return places.json();
+  let hotels = await fetch('https://amrtago.vercel.app/place/find/Hotel');
+  return hotels.json();
 }
 
 export default function Hotels() {
-  let places = use(getPosts());
+  let hotels = use(getPosts());
 
   return (
     <div>
@@ -46,11 +46,11 @@ export default function Hotels() {
         // pagination={{ clickable: true }}
         scrollbar={{ draggable: true }}
       >
-        {places.slice(1, 8).map((place) => (
-          <SwiperSlide key={place._id} className="h-[250px] relative ">
+        {hotels.slice(1, 8).map((hotel) => (
+          <SwiperSlide key={hotel._id} className="h-[250px] relative ">
             <Image
-              src={`https://skydigitmm.com/gotripapi/${place?.images[0]?.pathimages}`}
-              alt={place.placeId}
+              src={`https://skydigitmm.com/gotripapi/${hotel?.images[0]?.pathimages}`}
+              alt={hotel.placeId}
               sizes="100vh"
               fill
               style={{
@@ -59,7 +59,7 @@ export default function Hotels() {
               }}
             />
             <div className="px2 py-1 bg-white text-gray-900 text-sm absolute bottom-0 text-center font-semibold block mx-auto w-full">
-              {place.localize.name[0]}
+              {hotel.localize.name[0]}
             </div>
           </SwiperSlide>
         ))}
