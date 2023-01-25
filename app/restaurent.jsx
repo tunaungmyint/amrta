@@ -15,15 +15,18 @@ import Image from 'next/image';
 
 SwiperCore.use([Pagination, Navigation]);
 
-import { use } from 'react';
+import { use, useEffect } from 'react';
 
-async function getPosts() {
+async function getRests() {
   let rests = await fetch('https://amrtago.vercel.app/place/find/Rest');
   return rests.json();
 }
 
 export default function Restaurent() {
-  let rests = use(getPosts());
+  useEffect(() => {
+    getRests();
+  }, []);
+  let rests = use(getRests());
 
   return (
     <div>
