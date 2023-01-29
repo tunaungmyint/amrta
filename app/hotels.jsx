@@ -15,17 +15,16 @@ import Image from 'next/image';
 
 SwiperCore.use([Pagination, Navigation]);
 
-import { use, useEffect } from 'react';
+import { use } from 'react';
 
 async function getHotels() {
-  let hotels = await fetch('https://amrtago.vercel.app/place/find/Hotel');
+  let hotels = await fetch(
+    'http://139.59.246.244/place/getplacebylimit/Hotel/5'
+  );
   return hotels.json();
 }
 
 export default function Hotels() {
-  useEffect(() => {
-    getHotels();
-  }, []);
   let hotels = use(getHotels());
 
   return (

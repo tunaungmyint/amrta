@@ -15,17 +15,16 @@ import Image from 'next/image';
 
 SwiperCore.use([Pagination, Navigation]);
 
-import { use, useEffect } from 'react';
+import { use } from 'react';
 
 async function getPlaces() {
-  let places = await fetch('https://amrtago.vercel.app/place/find/Place');
+  let places = await fetch(
+    'http://139.59.246.244/place/getplacebylimit/Place/5'
+  );
   return places.json();
 }
 
 export default function Place() {
-  useEffect(() => {
-    getPlaces();
-  }, []);
   let places = use(getPlaces());
 
   return (

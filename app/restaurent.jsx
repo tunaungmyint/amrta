@@ -15,17 +15,14 @@ import Image from 'next/image';
 
 SwiperCore.use([Pagination, Navigation]);
 
-import { use, useEffect } from 'react';
+import { use } from 'react';
 
 async function getRests() {
-  let rests = await fetch('https://amrtago.vercel.app/place/find/Rest');
+  let rests = await fetch('http://139.59.246.244/place/getplacebylimit/Rest/5');
   return rests.json();
 }
 
 export default function Restaurent() {
-  useEffect(() => {
-    getRests();
-  }, []);
   let rests = use(getRests());
 
   return (
